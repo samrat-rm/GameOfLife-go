@@ -5,6 +5,12 @@ import (
 	"time"
 )
 
+type Grid interface {
+	GetCell(row, col int) *Cell
+	UpdateGrid() [][]*Cell
+	GetNeighbors(address *Address) []*Cell
+}
+
 type BaseGrid struct {
 	Rows int
 	Cols int
@@ -76,6 +82,7 @@ func (g *BaseGrid) CreateCell(addr *Address) *Cell {
 	rng := rand.New(src)
 	// Generate a random float64 between 0 and 1
 	randomFloat := rng.Float64()
+	// fmt.Println(randomFloat)
 	state := randomFloat < 0.5 // Randomly assign true or false with 50% probability
 	cell, _ := NewCell(addr, state)
 	return cell
