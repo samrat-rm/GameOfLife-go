@@ -8,7 +8,9 @@ func PrintCurrentGrid(g *BaseGrid) {
 	rows := g.Rows
 	columns := g.Cols
 	var output string
-
+	if rows > 5 {
+		fmt.Println("  > ")
+	}
 	for row := 0; row < rows; row++ {
 		for col := 0; col < columns; col++ {
 			cell := g.GetCell(row, col)
