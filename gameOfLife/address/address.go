@@ -1,5 +1,5 @@
 // address.go
-package main
+package address
 
 // Address is a struct that holds a row and column
 type Address struct {

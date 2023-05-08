@@ -21,7 +21,7 @@ package main
 // }
 
 func main() {
-	grid := NewBaseGrid(10, 10)
+	grid := NewBaseGrid(3, 3)
 	grid.createGrid()
 	PrintCurrentGrid(grid)
 	grid.UpdateGrid()

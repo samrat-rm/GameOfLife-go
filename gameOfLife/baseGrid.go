@@ -1,37 +1,39 @@
 package main
 
 import (
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/cell"
 	"math/rand"
 	"time"
 )
 
 type Grid interface {
-	GetCell(row, col int) *Cell
-	CreateCell(addr *Address) *Cell
-	createGrid() [][]*Cell
+	GetCell(row, col int) *cell.Cell
+	CreateCell(addr *address.Address) *cell.Cell
+	createGrid() [][]*cell.Cell
 }
 
 type BaseGrid struct {
 	Rows int
 	Cols int
-	Grid [][]*Cell
+	Grid [][]*cell.Cell
 }
 
 // NewBaseGrid is a constructor function that creates a new BaseGrid
 func NewBaseGrid(rows, cols int) *BaseGrid {
-	grid := make([][]*Cell, rows)
+	grid := make([][]*cell.Cell, rows)
 	for row := 0; row < rows; row++ {
-		grid[row] = make([]*Cell, cols)
+		grid[row] = make([]*cell.Cell, cols)
 		for col := 0; col < cols; col++ {
-			addr := NewAddress(row, col)
-			grid[row][col], _ = NewCell(addr, false)
+			addr := address.NewAddress(row, col)
+			grid[row][col], _ = cell.NewCell(addr, false)
 		}
 	}
 	return &BaseGrid{Rows: rows, Cols: cols, Grid: grid}
 }
 
 // GetCell is a method that returns the cell at the given row and column
-func (g *BaseGrid) GetCell(row, col int) *Cell {
+func (g *BaseGrid) GetCell(row, col int) *cell.Cell {
 	if row >= 0 && row < g.Rows && col >= 0 && col < g.Cols {
 		return g.Grid[row][col]
 	} else {
@@ -40,25 +42,25 @@ func (g *BaseGrid) GetCell(row, col int) *Cell {
 }
 
 // CreateCell is a method that creates a new cell at the given address
-func (g *BaseGrid) CreateCell(addr *Address) *Cell {
+func (g *BaseGrid) CreateCell(addr *address.Address) *cell.Cell {
 	src := rand.NewSource(time.Now().UnixNano())
 	rng := rand.New(src)
 	// Generate a random float64 between 0 and 1
 	randomFloat := rng.Float64()
 	// fmt.Println(randomFloat)
 	state := randomFloat < 0.5 // Randomly assign true or false with 50% probability
-	cell, _ := NewCell(addr, state)
+	cell, _ := cell.NewCell(addr, state)
 	return cell
 }
 
 // createGrid is a method that creates a new grid of cells with random states
-func (g *BaseGrid) createGrid() [][]*Cell {
+func (g *BaseGrid) createGrid() [][]*cell.Cell {
 
-	grid := make([][]*Cell, g.Rows)
+	grid := make([][]*cell.Cell, g.Rows)
 	for row := 0; row < g.Rows; row++ {
-		grid[row] = make([]*Cell, g.Cols)
+		grid[row] = make([]*cell.Cell, g.Cols)
 		for col := 0; col < g.Cols; col++ {
-			addr := NewAddress(row, col)
+			addr := address.NewAddress(row, col)
 			grid[row][col] = g.CreateCell(addr)
 		}
 	}

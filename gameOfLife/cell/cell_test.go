@@ -1,11 +1,13 @@
-package main
+package cell
 
 import (
 	"testing"
+
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
 )
 
 func TestNewCell(t *testing.T) {
-	addr := NewAddress(1, 1)
+	addr := address.NewAddress(1, 1)
 	cell, err := NewCell(addr, true)
 	if err != nil {
 		t.Errorf("Error creating new cell: %v", err)
@@ -21,9 +23,9 @@ func TestNewCell(t *testing.T) {
 }
 
 func TestUpdateState(t *testing.T) {
-	addr1 := NewAddress(1, 1)
-	addr2 := NewAddress(1, 2)
-	addr3 := NewAddress(1, 3)
+	addr1 := address.NewAddress(1, 1)
+	addr2 := address.NewAddress(1, 2)
+	addr3 := address.NewAddress(1, 3)
 
 	c1, _ := NewCell(addr1, true)
 	c2, _ := NewCell(addr2, true)
@@ -58,7 +60,7 @@ func TestUpdateState(t *testing.T) {
 	}
 
 	// Test for dead cell with 3 live neighbors
-	c4, _ := NewCell(NewAddress(2, 2), false)
+	c4, _ := NewCell(address.NewAddress(2, 2), false)
 	neighbors = []*Cell{c1, c2, c3}
 	newState = c4.UpdateState(neighbors)
 	if newState != true {

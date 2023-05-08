@@ -1,14 +1,17 @@
-package main
+package cell
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
+)
 
 type Cell struct {
-	Address *Address
+	Address *address.Address
 	State   bool
 }
 
 // NewCell is a constructor function that creates a new Cell
-func NewCell(addr *Address, state bool) (*Cell, error) {
+func NewCell(addr *address.Address, state bool) (*Cell, error) {
 	if addr == nil {
 		return nil, fmt.Errorf("invalid parameters for cell class")
 	}

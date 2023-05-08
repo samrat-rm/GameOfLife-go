@@ -1,24 +1,29 @@
 package main
 
+import (
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/cell"
+)
+
 type GridOperations interface {
-	UpdateGrid() [][]*Cell
-	GetNeighbors(address *Address) []*Cell
+	UpdateGrid() [][]*cell.Cell
+	GetNeighbors(address *address.Address) []*cell.Cell
 }
 
-func (g *BaseGrid) UpdateGrid() [][]*Cell {
-	newGrid := make([][]*Cell, g.Rows)
+func (g *BaseGrid) UpdateGrid() [][]*cell.Cell {
+	newGrid := make([][]*cell.Cell, g.Rows)
 	for row := 0; row < g.Rows; row++ {
-		newRow := make([]*Cell, g.Cols)
+		newRow := make([]*cell.Cell, g.Cols)
 		for col := 0; col < g.Cols; col++ {
-			cell := g.GetCell(row, col)
-			address := cell.Address
-			neighbors := g.GetNeighbors(address)
-			state := cell.UpdateState(neighbors)
-			var updatedCell *Cell
+			currentCell := g.GetCell(row, col)
+			cellAddress := currentCell.Address
+			neighbors := g.GetNeighbors(cellAddress)
+			state := currentCell.UpdateState(neighbors)
+			var updatedCell *cell.Cell
 			if state {
-				updatedCell, _ = NewCell(address, true)
+				updatedCell, _ = cell.NewCell(cellAddress, true)
 			} else {
-				updatedCell, _ = NewCell(address, false)
+				updatedCell, _ = cell.NewCell(cellAddress, false)
 			}
 			newRow[col] = updatedCell
 		}
@@ -28,10 +33,10 @@ func (g *BaseGrid) UpdateGrid() [][]*Cell {
 	return newGrid
 }
 
-func (g *BaseGrid) GetNeighbors(address *Address) []*Cell {
+func (g *BaseGrid) GetNeighbors(address *address.Address) []*cell.Cell {
 	row := address.Row
 	col := address.Col
-	neighbors := make([]*Cell, 0)
+	neighbors := make([]*cell.Cell, 0)
 	for r := row - 1; r <= row+1; r++ {
 		for c := col - 1; c <= col+1; c++ {
 			if r >= 0 && r < g.Rows && c >= 0 && c < g.Cols && !(r == row && c == col) {
