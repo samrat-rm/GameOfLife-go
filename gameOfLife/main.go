@@ -3,8 +3,6 @@ package main
 import "fmt"
 
 func main() {
-	// print the row and column of the address
-	addr := NewAddress(1, 2)
-	// print the row and column of the address
-	fmt.Printf("Row: %d, Col: %d\n", addr.Row, addr.Col)
+	grid := NewBaseGrid(3, 3)
+	fmt.Println(grid.GetCell(1, 1).State)
 }
