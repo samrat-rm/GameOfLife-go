@@ -16,7 +16,23 @@ func NewCell(addr *Address, state bool) (*Cell, error) {
 }
 
 // UpdateState is a method that updates the state of a Cell based on its neighbors
-func (c *Cell) UpdateState(neighbors []*Cell) error {
-	// TODO: implement updateState method
-	return fmt.Errorf("not implemented")
+func (c *Cell) UpdateState(neighbours []*Cell) bool {
+	aliveNeighbors := 0
+	for _, neighbor := range neighbours {
+		if neighbor.State {
+			aliveNeighbors++
+		}
+	}
+	if c.State {
+		if aliveNeighbors < 2 || aliveNeighbors > 3 {
+			return false
+		} else {
+			return true
+		}
+	} else {
+		if aliveNeighbors == 3 {
+			return true
+		}
+	}
+	return false
 }
