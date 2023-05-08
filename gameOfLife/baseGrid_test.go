@@ -43,3 +43,15 @@ func TestGetCell(t *testing.T) {
 		t.Error("Expected cell to be nil")
 	}
 }
+func TestCreateGrid(t *testing.T) {
+	baseGrid := NewBaseGrid(5, 5)
+	baseGrid.createGrid()
+
+	for row := 0; row < baseGrid.Rows; row++ {
+		for col := 0; col < baseGrid.Cols; col++ {
+			if baseGrid.Grid[row][col] == nil {
+				t.Errorf("Cell at row %d and col %d should not be nil", row, col)
+			}
+		}
+	}
+}
