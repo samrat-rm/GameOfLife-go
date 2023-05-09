@@ -1,11 +1,10 @@
 package grid
 
 import (
-	"math/rand"
-	"time"
-
+	"crypto/rand"
 	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
 	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/cell"
+	"math/big"
 )
 
 type BaseGridInterface interface {
@@ -44,12 +43,12 @@ func (g *Grid) GetCell(row, col int) *cell.Cell {
 
 // CreateCell is a method that creates a new cell at the given address
 func (g *Grid) CreateCell(addr *address.Address) *cell.Cell {
-	src := rand.NewSource(time.Now().UnixNano())
-	rng := rand.New(src)
+	// src := rand.NewSource(time.Now().UnixNano())
+	// rng := rand.New(src)
 	// Generate a random float64 between 0 and 1
-	randomFloat := rng.Float64()
+	randomFloat := generateRandomValue()
 	// fmt.Println(randomFloat)
-	state := randomFloat < 0.5 // Randomly assign true or false with 50% probability
+	state := randomFloat < 50 // Randomly assign true or false with 50% probability
 	cell, _ := cell.NewCell(addr, state)
 	return cell
 }
@@ -68,4 +67,11 @@ func (g *Grid) CreateGrid() [][]*cell.Cell {
 	g.Grid = grid
 	PrintCurrentGrid(g.Grid)
 	return grid
+}
+func generateRandomValue() int {
+	n, err := rand.Int(rand.Reader, big.NewInt(100))
+	if err != nil {
+		return 0
+	}
+	return int(n.Int64())
 }

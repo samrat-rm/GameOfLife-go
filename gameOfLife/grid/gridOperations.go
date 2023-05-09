@@ -1,7 +1,6 @@
 package grid
 
 import (
-	"fmt"
 	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
 	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/cell"
 )
@@ -27,7 +26,6 @@ func (g *Grid) UpdateGrid() [][]*cell.Cell {
 			} else {
 				updatedCell, _ = cell.NewCell(cellAddress, false)
 			}
-			fmt.Println(state, cellAddress.Row, cellAddress.Col)
 			newRow[col] = updatedCell
 		}
 		newGrid[row] = newRow
