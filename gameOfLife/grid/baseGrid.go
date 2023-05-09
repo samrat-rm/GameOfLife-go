@@ -43,7 +43,7 @@ func (g *BaseGrid) GetCell(row, col int) *cell.Cell {
 }
 
 // CreateCell is a method that creates a new cell at the given address
-func (g *BaseGrid) createCell(addr *address.Address) *cell.Cell {
+func (g *BaseGrid) CreateCell(addr *address.Address) *cell.Cell {
 	src := rand.NewSource(time.Now().UnixNano())
 	rng := rand.New(src)
 	// Generate a random float64 between 0 and 1
@@ -62,7 +62,7 @@ func (g *BaseGrid) CreateGrid() [][]*cell.Cell {
 		grid[row] = make([]*cell.Cell, g.Cols)
 		for col := 0; col < g.Cols; col++ {
 			addr := address.NewAddress(row, col)
-			grid[row][col] = g.createCell(addr)
+			grid[row][col] = g.CreateCell(addr)
 		}
 	}
 	g.Grid = grid
