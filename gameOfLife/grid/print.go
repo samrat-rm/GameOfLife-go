@@ -1,23 +1,27 @@
-package print
+package grid
 
 import (
 	"fmt"
-
-	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/grid"
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/cell"
 )
 
-func PrintCurrentGrid(g *grid.BaseGrid) {
+type PrintGridOperations interface {
+	GridOperations
+	PrintCurrentGrid()
+}
+
+func PrintCurrentGrid(g [][]*cell.Cell) {
 	fmt.Println()
 
-	rows := g.Rows
-	columns := g.Cols
+	rows := len(g)
+	columns := len(g[0])
 	var output string
 	if rows > 5 {
 		fmt.Println("  > ")
 	}
 	for row := 0; row < rows; row++ {
 		for col := 0; col < columns; col++ {
-			cell := g.GetCell(row, col)
+			cell := g[row][col]
 			if cell.State {
 				output += " O "
 			} else {

@@ -2,15 +2,13 @@ package main
 
 import (
 	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/grid"
-	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/print"
 )
 
 func main() {
-	grid := grid.NewBaseGrid(3, 3)
+	grid := grid.NewGrid(3, 3)
 	grid.CreateGrid()
-	print.PrintCurrentGrid(grid)
 	grid.UpdateGrid()
-	print.PrintCurrentGrid(grid)
+
 }
 
 // func PrintGridStates(grid [][]*Cell) {

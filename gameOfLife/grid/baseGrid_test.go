@@ -4,9 +4,9 @@ import (
 	"testing"
 )
 
-func TestNewBaseGrid(t *testing.T) {
+func TestNewGrid(t *testing.T) {
 	// Create a new BaseGrid with 2 rows and 3 columns
-	grid := NewBaseGrid(2, 3)
+	grid := NewGrid(2, 3)
 
 	// Test the Rows and Cols fields
 	if grid.Rows != 2 {
@@ -19,7 +19,7 @@ func TestNewBaseGrid(t *testing.T) {
 
 func TestGetCell(t *testing.T) {
 	// Create a new BaseGrid with 2 rows and 3 columns
-	grid := NewBaseGrid(2, 3)
+	grid := NewGrid(2, 3)
 
 	// Test getting a valid cell
 	cell := grid.GetCell(0, 0)
@@ -44,12 +44,12 @@ func TestGetCell(t *testing.T) {
 	}
 }
 func TestCreateGrid(t *testing.T) {
-	baseGrid := NewBaseGrid(5, 5)
-	baseGrid.CreateGrid()
+	grid := NewGrid(5, 5)
+	grid.CreateGrid()
 
-	for row := 0; row < baseGrid.Rows; row++ {
-		for col := 0; col < baseGrid.Cols; col++ {
-			if baseGrid.Grid[row][col] == nil {
+	for row := 0; row < grid.Rows; row++ {
+		for col := 0; col < grid.Cols; col++ {
+			if grid.Grid[row][col] == nil {
 				t.Errorf("Cell at row %d and col %d should not be nil", row, col)
 			}
 		}
