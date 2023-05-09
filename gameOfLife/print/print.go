@@ -2,6 +2,7 @@ package print
 
 import (
 	"fmt"
+
 	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/grid"
 )
 
