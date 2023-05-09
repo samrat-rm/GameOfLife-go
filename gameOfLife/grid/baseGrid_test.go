@@ -1,4 +1,4 @@
-package main
+package grid
 
 import (
 	"testing"
@@ -45,7 +45,7 @@ func TestGetCell(t *testing.T) {
 }
 func TestCreateGrid(t *testing.T) {
 	baseGrid := NewBaseGrid(5, 5)
-	baseGrid.createGrid()
+	baseGrid.CreateGrid()
 
 	for row := 0; row < baseGrid.Rows; row++ {
 		for col := 0; col < baseGrid.Cols; col++ {

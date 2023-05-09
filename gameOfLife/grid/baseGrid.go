@@ -1,10 +1,11 @@
-package main
+package grid
 
 import (
-	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
-	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/cell"
 	"math/rand"
 	"time"
+
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/cell"
 )
 
 type Grid interface {
@@ -54,7 +55,7 @@ func (g *BaseGrid) CreateCell(addr *address.Address) *cell.Cell {
 }
 
 // createGrid is a method that creates a new grid of cells with random states
-func (g *BaseGrid) createGrid() [][]*cell.Cell {
+func (g *BaseGrid) CreateGrid() [][]*cell.Cell {
 
 	grid := make([][]*cell.Cell, g.Rows)
 	for row := 0; row < g.Rows; row++ {

@@ -1,4 +1,4 @@
-package main
+package grid
 
 import (
 	"testing"
@@ -6,7 +6,7 @@ import (
 
 func TestUpdateGrid(t *testing.T) {
 	baseGrid := NewBaseGrid(5, 5)
-	baseGrid.createGrid()
+	baseGrid.CreateGrid()
 	oldGrid := baseGrid.Grid
 
 	baseGrid.UpdateGrid()

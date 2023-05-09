@@ -1,4 +1,4 @@
-package main
+package grid
 
 import (
 	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/address"

@@ -1,8 +1,11 @@
-package main
+package print
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/samrat-rm/GameOfLife-go.git/gameOfLife/grid"
+)
 
-func PrintCurrentGrid(g *BaseGrid) {
+func PrintCurrentGrid(g *grid.BaseGrid) {
 	fmt.Println()
 
 	rows := g.Rows
